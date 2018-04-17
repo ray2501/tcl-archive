@@ -1,0 +1,140 @@
+# tcl-archive.test --
+#
+#	Tests for tcl-archive
+#------------------------------------------------------------------------------
+
+lappend auto_path .
+if {[lsearch [namespace children] ::tcltest] == -1} {
+    package require tcltest 2
+    namespace import -force ::tcltest::*
+}
+loadTestedCommands
+package require archive
+
+test archive-1.1 {read a archive, wrong # args} {*}{
+    -body {
+    ::archive::extract
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test archive-1.2 {read a archive, wrong # args} {*}{
+    -body {
+    ::archive::extract aaa
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test archive-1.3 {read a archive, open file fail} {*}{
+    -body {
+    ::archive::extract test.tar.gz gzip tar 0
+    }
+    -returnCodes error
+    -match glob
+    -result {open file fail*}
+}
+
+test archive-1.4 {read a archive, filter string is wrong} {*}{
+    -body {
+    ::archive::extract test.tar.gz nosuchthing tar 0
+    }
+    -returnCodes error
+    -match glob
+    -result {filter string is wrong*}
+}
+
+test archive-1.5 {read a archive, format string is wrong} {*}{
+    -body {
+    ::archive::extract test.tar.gz bzip2 nosuchthing 0
+    }
+    -returnCodes error
+    -match glob
+    -result {format string is wrong*}
+}
+
+test archive-1.6 {read a archive, wrong # args} {*}{
+    -body {
+    ::archive::extract test.tar.gz bzip2 nosuchthing 1 -path
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test archive-1.7 {read a archive, path not exist} {*}{
+    -body {
+    ::archive::extract test.tar.gz all all 1 -path aaa
+    }
+    -returnCodes error
+    -match glob
+    -result {path not exist*}
+}
+
+test archive-1.8 {read a archive, unknown option} {*}{
+    -body {
+    ::archive::extract test.tar.gz all all 1 -nosuchthing aaa
+    }
+    -returnCodes error
+    -match glob
+    -result {unknown option*}
+}
+
+#------------------------------------------------------------------------------
+
+test archive-2.1 {read a archive, wrong # args} {*}{
+    -body {
+    ::archive::create
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test archive-2.2 {read a archive, wrong # args} {*}{
+    -body {
+    ::archive::create test.tar.gz
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test archive-2.3 {read a archive, wrong # args} {*}{
+    -body {
+    ::archive::create test.tar.gz gzip ustar
+    }
+    -returnCodes error
+    -match glob
+    -result {wrong # args*}
+}
+
+test archive-2.4 {read a archive, filter string is wrong} {*}{
+    -body {
+    set file [list a b c]
+    ::archive::create test.tar.gz nosuchthing ustar $file
+    }
+    -returnCodes error
+    -match glob
+    -result {filter string is wrong*}
+}
+
+test archive-2.5 {read a archive, format string is wrong} {*}{
+    -body {
+    set file [list a b c]
+    ::archive::create test.tar.gz gzip nosuchthing $file
+    }
+    -returnCodes error
+    -match glob
+    -result {format string is wrong*}
+}
+
+
+#------------------------------------------------------------------------------
+
+cleanupTests
+return
+

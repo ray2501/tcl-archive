@@ -1,0 +1,30 @@
+2018-04-17  Danilo Chang
+
+    * Bump version to 0.4
+    * Update README.md
+    * Update tcl-archive.spec
+
+2018-03-05  Danilo Chang
+
+    * Bump version to 0.3
+    * Add ::archive::extract new option: -passwd
+    * Fix ::archive::create filter "none" use the wrong function
+
+2018-02-26  Danilo Chang
+
+    * Bump version to 0.2
+    * Use Tcl_FSAccess to check path
+    * Fix build failed at MSYS2
+
+2018-02-23  Danilo Chang
+
+    * Add basic tests for archive::create command
+    * Add archive::create command
+    * Add basic tests for archive::extract command
+    * Add archive::extract command
+
+2018-02-22  Danilo Chang
+
+    * Link to libarchive, implement ::archive::version command
+    * Create this project from sampleextension
+

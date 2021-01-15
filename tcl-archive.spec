@@ -9,7 +9,7 @@
 Name:     tcl-archive
 Version:  0.4
 Release:  0
-License:  BSD 2-Clause    
+License:  BSD-2-Clause
 Summary:  A Tcl wrapper for LibArchive
 Url:      https://github.com/ray2501/tcl-archive
 Group:    Development/Libraries/Tcl

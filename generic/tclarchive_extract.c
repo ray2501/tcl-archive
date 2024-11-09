@@ -77,7 +77,8 @@ int ARCHIVE_EXTRACT(void *cd, Tcl_Interp *interp, int objc,Tcl_Obj *const*objv){
     char newPath[PATH_MAX];
     const char *oldPath = NULL;
     Tcl_Obj *pResultStr = NULL;
-    int len, i;
+    Tcl_Size len;
+    int i;
     int flags = ARCHIVE_EXTRACT_TIME;
     const char *zPasswd = NULL;
 

@@ -47,7 +47,7 @@ int ARCHIVE_CREATE(void *cd, Tcl_Interp *interp, int objc,Tcl_Obj *const*objv){
     Tcl_DString translatedFilename;
     const char *zFormat = NULL;
     const char *zFilter = NULL;
-    int len = 0, filesListCount = 0;
+    Tcl_Size len = 0, filesListCount = 0;
     int count = 0, count2 = 0;
     Tcl_Obj *pFilesList = NULL;
     char **argv = NULL;
@@ -97,7 +97,7 @@ int ARCHIVE_CREATE(void *cd, Tcl_Interp *interp, int objc,Tcl_Obj *const*objv){
     for(count = 0; count < filesListCount; count++) {
         Tcl_Obj *pFileListElement = NULL;
         char *filepath = NULL;
-        int iLength = 0;
+        Tcl_Size iLength = 0;
 
         if(Tcl_ListObjIndex(interp, pFilesList, count, &pFileListElement)) {
             if(argv) free(argv);

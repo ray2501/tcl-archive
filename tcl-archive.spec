@@ -7,7 +7,7 @@
 %define packagename archive
 
 Name:     tcl-archive
-Version:  0.5
+Version:  0.6
 Release:  0
 License:  BSD-2-Clause
 Summary:  A Tcl wrapper for LibArchive
